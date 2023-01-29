@@ -34,9 +34,6 @@ public class HelloController implements Observer {
     private ImageView imgEsmeralda;
 
     @FXML
-    private ImageView imgFondo;
-
-    @FXML
     private ImageView imgMinero;
     private boolean movimiento = false;
     private Random random;
