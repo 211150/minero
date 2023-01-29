@@ -1,6 +1,8 @@
 package com.mina.minero.controller;
 
 import com.mina.minero.models.Diamante;
+import com.mina.minero.models.Esmeralda;
+
 import com.mina.minero.models.Vector;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -39,8 +41,8 @@ public class HelloController implements Observer {
     private boolean movimiento = false;
     private Random random;
     private Diamante diamante;
-//    private Esmeralda esmeralda;
-//    private Ruby ruby;
+    private Esmeralda esmeralda;
+
 
 
     @FXML
@@ -56,17 +58,13 @@ public class HelloController implements Observer {
         new Thread(diamante).start();
         movimiento = true;
 
-//        esmeralda = new Esmeralda();
-//        esmeralda.set_Position(new Vector(1,620,370));
-//        esmeralda.addObserver(this);
-//        new Thread(esmeralda).start();
-//        movimiento = true;
-//
-//        ruby = new Ruby();
-//        ruby.set_Position(new Vector(1,620,370));
-//        ruby.addObserver(this);
-//        new Thread(ruby).start();
-//        movimiento = true;
+        esmeralda = new Esmeralda();
+        esmeralda.set_Position(new Vector(1,620,370));
+        esmeralda.addObserver(this);
+        new Thread(esmeralda).start();
+        movimiento = true;
+
+
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(50), btnIniciarOnMouseCliked);
         fadeTransition.setByValue(0);
@@ -135,35 +133,20 @@ public class HelloController implements Observer {
             }
         }
 
-//        if(imgMinero.getBoundsInParent().intersects(imgEsmeralda.getBoundsInParent())){
-//            System.out.println("El minero encontro una Esmeralda");
-//            this.esmeralda.setEstado(false);
-//            this.imgEsmeralda.setVisible(false);
-//            if(!esmeralda.isEstado()){
-//                int vectX = random.nextInt(600);
-//                int vectY = random.nextInt(300);
-//                this.esmeralda.setEstado(true);
-//                esmeralda.set_Position(new Vector(1, vectX,vectY));
-//                this.imgEsmeralda.setVisible(true);
-//                imgEsmeralda.setLayoutX(vectX);
-//                imgEsmeralda.setLayoutY(vectY);
-//            }
-//        }
-//
-//        if(imgMinero.getBoundsInParent().intersects(imgRuby.getBoundsInParent())){
-//            System.out.println("El minero encontro un Ruby");
-//            this.ruby.setEstado(false);
-//            this.imgRuby.setVisible(false);
-//            if(!ruby.isEstado()){
-//                int vectX = random.nextInt(600);
-//                int vectY = random.nextInt(300);
-//                this.ruby.setEstado(true);
-//                ruby.set_Position(new Vector(1, vectX,vectY));
-//                this.imgRuby.setVisible(true);
-//                imgRuby.setLayoutX(vectX);
-//                imgRuby.setLayoutY(vectY);
-//            }
-//        }
+        if(imgMinero.getBoundsInParent().intersects(imgEsmeralda.getBoundsInParent())){
+            System.out.println("El minero encontro una Esmeralda");
+            this.esmeralda.setEstado(false);
+            this.imgEsmeralda.setVisible(false);
+            if(!esmeralda.isEstado()){
+                int vectX = random.nextInt(600);
+                int vectY = random.nextInt(300);
+                this.esmeralda.setEstado(true);
+                esmeralda.set_Position(new Vector(1, vectX,vectY));
+                this.imgEsmeralda.setVisible(true);
+                imgEsmeralda.setLayoutX(vectX);
+                imgEsmeralda.setLayoutY(vectY);
+            }
+        }
 
     }
 }
