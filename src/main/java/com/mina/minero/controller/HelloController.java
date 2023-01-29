@@ -2,7 +2,7 @@ package com.mina.minero.controller;
 
 import com.mina.minero.models.Diamante;
 import com.mina.minero.models.Esmeralda;
-
+import com.mina.minero.models.Ruby;
 import com.mina.minero.models.Vector;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -42,7 +42,7 @@ public class HelloController implements Observer {
     private Random random;
     private Diamante diamante;
     private Esmeralda esmeralda;
-
+    private Ruby ruby;
 
 
     @FXML
@@ -64,7 +64,11 @@ public class HelloController implements Observer {
         new Thread(esmeralda).start();
         movimiento = true;
 
-
+        ruby = new Ruby();
+        ruby.set_Position(new Vector(1,620,370));
+        ruby.addObserver(this);
+        new Thread(ruby).start();
+        movimiento = true;
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(50), btnIniciarOnMouseCliked);
         fadeTransition.setByValue(0);
@@ -145,6 +149,21 @@ public class HelloController implements Observer {
                 this.imgEsmeralda.setVisible(true);
                 imgEsmeralda.setLayoutX(vectX);
                 imgEsmeralda.setLayoutY(vectY);
+            }
+        }
+
+        if(imgMinero.getBoundsInParent().intersects(imgRuby.getBoundsInParent())){
+            System.out.println("El minero encontro un Ruby");
+            this.ruby.setEstado(false);
+            this.imgRuby.setVisible(false);
+            if(!ruby.isEstado()){
+                int vectX = random.nextInt(600);
+                int vectY = random.nextInt(300);
+                this.ruby.setEstado(true);
+                ruby.set_Position(new Vector(1, vectX,vectY));
+                this.imgRuby.setVisible(true);
+                imgRuby.setLayoutX(vectX);
+                imgRuby.setLayoutY(vectY);
             }
         }
 
