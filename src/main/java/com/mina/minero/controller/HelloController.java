@@ -78,6 +78,7 @@ public class HelloController implements Observer {
 
     @FXML
     void characterOnKeyPressed(KeyEvent event) {
+        //Funcionalidad de movimiento en con las teclas A,S,D,W
         if(movimiento == true){
             if (event.getCode() == KeyCode.D){
                 System.out.println("Movimiento de tecla D");
