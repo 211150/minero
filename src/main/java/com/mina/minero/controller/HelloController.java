@@ -1,9 +1,6 @@
 package com.mina.minero.controller;
 
-import com.mina.minero.models.Diamante;
-import com.mina.minero.models.Esmeralda;
-import com.mina.minero.models.Ruby;
-import com.mina.minero.models.Vector;
+import com.mina.minero.models.*;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,6 +29,8 @@ public class HelloController implements Observer {
 
     @FXML
     private ImageView imgEsmeralda;
+    @FXML
+    private ImageView imgMoneda;
 
     @FXML
     private ImageView imgMinero;
@@ -40,6 +39,7 @@ public class HelloController implements Observer {
     private Diamante diamante;
     private Esmeralda esmeralda;
     private Ruby ruby;
+    private Moneda moneda;
 
 
     @FXML
@@ -65,6 +65,12 @@ public class HelloController implements Observer {
         ruby.set_Position(new Vector(1,620,370));
         ruby.addObserver(this);
         new Thread(ruby).start();
+        movimiento = true;
+
+        moneda = new Moneda();
+        moneda.set_Position(new Vector(1,620,370));
+        moneda.addObserver(this);
+        new Thread(moneda).start();
         movimiento = true;
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(50), btnIniciarOnMouseCliked);
@@ -162,6 +168,21 @@ public class HelloController implements Observer {
                 this.imgRuby.setVisible(true);
                 imgRuby.setLayoutX(vectX);
                 imgRuby.setLayoutY(vectY);
+            }
+        }
+
+        if(imgMinero.getBoundsInParent().intersects(imgMoneda.getBoundsInParent())){
+            System.out.println("El minero encontro una Moneda de oro");
+            this.moneda.setEstado(false);
+            this.imgMoneda.setVisible(false);
+            if(!moneda.isEstado()){
+                int vectX = random.nextInt(600);
+                int vectY = random.nextInt(300);
+                this.moneda.setEstado(true);
+                moneda.set_Position(new Vector(1, vectX,vectY));
+                this.imgMoneda.setVisible(true);
+                imgMoneda.setLayoutX(vectX);
+                imgMoneda.setLayoutY(vectY);
             }
         }
 

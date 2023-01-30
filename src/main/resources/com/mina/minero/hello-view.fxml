@@ -34,5 +34,10 @@
             <Image url="C:\Users\ramos\OneDrive\Escritorio\7Cuatrimestre\Programacion Concurrente\minero\src\main\resources\assets\images\ruby1.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="imgMoneda" fitHeight="25.0" fitWidth="30.0" layoutX="445.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="C:\Users\ramos\OneDrive\Escritorio\7Cuatrimestre\Programacion Concurrente\minero\src\main\resources\assets\images\moneda.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
